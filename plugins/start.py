@@ -41,7 +41,7 @@ async def start(client, message):
         await checkdb.add_user(message.from_user.id, message.from_user.first_name)
         return await message.reply("<b>Congratulations 🎉\n\nYour Account Created Successfully.\n\nFor Uploading File In Quality Option Use Command /quality\n\nMore Commands Are /account and /update and /withdraw\n\nFor Without Quality Option Direct Send File To Bot.</b>")
     else:
-        rm = InlineKeyboardMarkup([[InlineKeyboardButton("✨ Update Channel", url="https://t.me/VJ_Disk")]])
+        rm = InlineKeyboardMarkup([[InlineKeyboardButton("✨ Update Channel", url="https://t.me/pikashow_7")]])
         await client.send_message(
             chat_id=message.from_user.id,
             text=script.START_TXT.format(message.from_user.mention),
