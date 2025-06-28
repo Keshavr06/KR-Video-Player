@@ -25,7 +25,7 @@ html_content = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to VJ Disk</title>
+    <title>Welcome to KR Disk</title>
     <style>
         body {
             margin: 0;
@@ -84,7 +84,7 @@ html_content = """
 </head>
 <body>
     <div class="container">
-        <h1>Welcome To VJ Disk!</h1>
+        <h1>Welcome To KR Disk!</h1>
         <p>Your ultimate destination for streaming and sharing videos!</p>
         <p>Explore a world of entertainment at your fingertips.</p>
         <button class="button" onclick="alert('Explore Now!')">Get Started</button>
