@@ -10,18 +10,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .loader {
+            border-top-color: #3498db;
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .zoom {
+            cursor: zoom-in;
+            transition: all 0.3s ease;
+        }
+
+        .zoomed {
+            width: 100% !important;
+            height: 100vh !important;
+            cursor: zoom-out;
+        }
+    </style>
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen flex flex-col justify-between">
-    <header class="bg-gradient-to-r from-purple-600 to-pink-500 p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="{{link}}" class="text-white text-2xl font-bold">{{name}}</a>
-            <div class="flex space-x-4">
-                <a href="{{link}}" class="text-white text-lg hover:underline">Join Telegram</a>
-                <a href="https://imagetools7.blogspot.com/?m=1" class="text-white text-lg hover:underline">Image Tool</a>
-                <a href="https://t.me/pikashow_7" class="text-white text-lg hover:underline">Backup Channel</a>
-            </div>
-        </div>
+    <header class="bg-gradient-to-r from-purple-600 to-pink-500 p-6 shadow-lg text-center">
+        <h1 class="text-white text-4xl font-extrabold tracking-widest animate__animated animate__fadeInDown">KR DISK</h1>
     </header>
 
     <main class="flex-grow container mx-auto px-4 py-8">
@@ -35,16 +50,17 @@
 
         <div id="videoContainer" class="hidden flex justify-center mb-8">
             <div class="w-full lg:w-3/4 bg-black rounded-3xl overflow-hidden shadow-2xl animate__animated animate__fadeInUp">
-                <video id="player" class="player w-full rounded-3xl" playsinline controls>
+                <video id="player" class="player w-full rounded-3xl zoom" playsinline controls>
                     {% if file_url %}
-                    <source src="{{file_url}}" type="video/mp4" size="480">
+                    <source src="{{file_url}}" type="video/mp4">
                     {% endif %}
                     {% if file_url_two %}
-                    <source src="{{file_url_two}}" type="video/mp4" size="720">
+                    <source src="{{file_url_two}}" type="video/mp4">
                     {% endif %}
                     {% if file_url_three %}
-                    <source src="{{file_url_three}}" type="video/mp4" size="1080">
+                    <source src="{{file_url_three}}" type="video/mp4">
                     {% endif %}
+                    Your browser does not support the video tag.
                 </video>
             </div>
         </div>
@@ -74,22 +90,6 @@
         © <script>document.write(new Date().getFullYear());</script> <a href="{{link}}" class="font-bold hover:underline">{{name}}</a>. All Rights Reserved.
     </footer>
 
-    <style>
-        .loader {
-            border-top-color: #3498db;
-            animation: spin 1s infinite linear;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
-
     <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
     <script>
         const controls = ['play-large', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'];
@@ -100,20 +100,18 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('videoContainer').classList.remove('hidden');
             }, 2000);
+
+            const video = document.getElementById('player');
+            video.addEventListener('click', () => {
+                video.classList.toggle('zoomed');
+            });
         });
     </script>
 
     <script>
         document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
         document.addEventListener('keydown', function (e) {
-            if (
-                e.key === 'F12' ||
-                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-                (e.ctrlKey && e.key === 'u') ||
-                e.ctrlKey ||
-                e.shiftKey ||
-                e.altKey
-            ) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || e.ctrlKey || e.shiftKey || e.altKey) {
                 e.preventDefault();
             }
         });
