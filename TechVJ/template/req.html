@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{file_name}} | {{name}}</title>
+    <title>SilentXBotz | {{file_name}}</title>
     <link rel="shortcut icon" href="https://i.ibb.co/qJyZWCv/20230629-081948-0000.png" type="image/x-icon">
     <meta property="og:image" content="https://i.ibb.co/qJyZWCv/20230629-081948-0000.png">
 
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
+    <link rel="stylesheet" href="https://developer-six-dusky.vercel.app/548/551/SilentXBotz.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .loader {
@@ -35,13 +37,16 @@
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen flex flex-col justify-between">
-    <header class="bg-gradient-to-r from-purple-600 to-pink-500 p-6 shadow-lg text-center">
-        <h1 class="text-white text-4xl font-extrabold tracking-widest animate__animated animate__fadeInDown">KR DISK</h1>
-    </header>
+    <div class="header bg-gradient-to-r from-purple-600 to-pink-500 p-6 shadow-lg text-center">
+        <h1 class="text-white text-4xl font-extrabold tracking-widest animateanimated animatefadeInDown">SilentXBotz Streaming</h1>
+        <a href="https://t.me/SilentXBotz" class="telegram-btn inline-block mt-4 text-white bg-blue-500 px-4 py-2 rounded-full shadow hover:bg-blue-600">
+            <i class="fab fa-telegram-plane mr-2"></i>Join Channel
+        </a>
+    </div>
 
     <main class="flex-grow container mx-auto px-4 py-8">
         <div class="text-center mb-6">
-            <h1 id="myDiv" class="text-3xl font-extrabold text-white animate__animated animate__fadeInDown">{{file_name}}</h1>
+            <h2 id="myDiv" class="text-3xl font-extrabold text-white animateanimated animatefadeInDown">{{file_name}}</h2>
         </div>
 
         <div id="loading" class="flex justify-center items-center mb-8">
@@ -49,48 +54,45 @@
         </div>
 
         <div id="videoContainer" class="hidden flex justify-center mb-8">
-            <div class="w-full lg:w-3/4 bg-black rounded-3xl overflow-hidden shadow-2xl animate__animated animate__fadeInUp">
+            <div class="w-full lg:w-3/4 bg-black rounded-3xl overflow-hidden shadow-2xl animateanimated animatefadeInUp">
                 <video id="player" class="player w-full rounded-3xl zoom" playsinline controls>
-                    {% if file_url %}
-                    <source src="{{file_url}}" type="video/mp4">
-                    {% endif %}
-                    {% if file_url_two %}
-                    <source src="{{file_url_two}}" type="video/mp4">
-                    {% endif %}
-                    {% if file_url_three %}
-                    <source src="{{file_url_three}}" type="video/mp4">
-                    {% endif %}
+                    {% if file_url %}<source src="{{file_url}}" type="video/mp4">{% endif %}
+                    {% if file_url_two %}<source src="{{file_url_two}}" type="video/mp4">{% endif %}
+                    {% if file_url_three %}<source src="{{file_url_three}}" type="video/mp4">{% endif %}
                     Your browser does not support the video tag.
                 </video>
             </div>
         </div>
 
-        <div class="text-center mb-6">
-            <a href="{{link}}" target="_blank" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105">Join Telegram Channel</a>
+        <div class="file-info text-white text-center mb-6 animateanimated animatefadeIn">
+            <p><strong>Name:</strong> {{file_name}}</p>
+            <p><strong>Size:</strong> {{file_size}}</p>
         </div>
 
-        <div class="text-center mb-6">
-            <a href="https://imagetools7.blogspot.com/?m=1" target="_blank" class="inline-block bg-gradient-to-r from-green-500 to-teal-500 hover:from-teal-500 hover:to-green-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105">Image Tool</a>
+        <div class="action-buttons text-center space-y-4 animateanimated animatefadeInUp">
+            <button class="vlc bg-orange-500 text-white px-4 py-2 rounded-full shadow hover:bg-orange-600" onclick="vlc_player()"><i class="fas fa-video mr-2"></i>Watch in VLC</button>
+            <button class="mx bg-green-500 text-white px-4 py-2 rounded-full shadow hover:bg-green-600" onclick="mx_player()"><i class="fas fa-play-circle mr-2"></i>Watch in MX</button>
+
+<button class="playit bg-yellow-500 text-white px-4 py-2 rounded-full shadow hover:bg-yellow-600" onclick="playit_player()"><i class="fas fa-play mr-2"></i>Watch in PlayIt</button>
+            <button class="download bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700" onclick="Download()"><i class="fas fa-download mr-2"></i>Download</button>
+            <button class="copy bg-gray-700 text-white px-4 py-2 rounded-full shadow hover:bg-gray-800" onclick="copy_url()"><i class="fas fa-copy mr-2"></i>Copy URL</button>
+            <button class="share bg-indigo-500 text-white px-4 py-2 rounded-full shadow hover:bg-indigo-600" onclick="shareButton()"><i class="fas fa-share-alt mr-2"></i>Share URL</button>
         </div>
 
-        <div class="text-center mb-6">
-            <a href="https://t.me/pikashow_7" target="_blank" class="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-500 hover:to-yellow-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105">Backup Channel</a>
-        </div>
-
-        <div class="text-center text-sm text-yellow-400 mb-4 animate__animated animate__fadeIn">
+        <div class="text-center text-sm text-yellow-400 mt-8 animateanimated animatefadeIn">
             Video Not Playing? Try another browser that supports this video format.
         </div>
 
-        <div class="text-center text-xs text-gray-400 px-4 animate__animated animate__fadeIn">
-            ⚠️ Disclaimer: This website provides links to third-party videos for entertainment and information purposes only. We do not host any video content. Use at your own risk and verify legality in your jurisdiction.
+        <div class="text-center text-xs text-gray-400 px-4 mt-4 animateanimated animatefadeIn">
+            ⚠️ Disclaimer: SilentXBotz does not host or store any video content. All content is provided by third parties.
         </div>
     </main>
 
     <footer class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-center py-4">
-        © <script>document.write(new Date().getFullYear());</script> <a href="{{link}}" class="font-bold hover:underline">{{name}}</a>. All Rights Reserved.
+        © <script>document.write(new Date().getFullYear());</script> SilentXBotz. All rights reserved.
     </footer>
 
-    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+    <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
     <script>
         const controls = ['play-large', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'];
         document.addEventListener('DOMContentLoaded', () => {
@@ -111,20 +113,20 @@
     <script>
         document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || e.ctrlKey || e.shiftKey || e.altKey) {
+            if (e.key === 'F12'  (e.ctrlKey && e.shiftKey && e.key === 'I')  (e.ctrlKey && e.key === 'u')  e.ctrlKey  e.shiftKey || e.altKey) {
                 e.preventDefault();
             }
         });
     </script>
 
-    <script src="js/wow.min.js"></script>
     <script>
-        new WOW().init();
         var div = document.getElementById('myDiv');
         var text = div.textContent;
         if (text.length > 60) {
             div.textContent = text.slice(0, 60);
         }
     </script>
+
+    <script src="https://developer-six-dusky.vercel.app/548/551/SilentXBotz.js"></script>
 </body>
 </html>
