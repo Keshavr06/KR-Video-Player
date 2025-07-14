@@ -33,7 +33,7 @@ async def start(client, message):
             await db.set_name(message.from_user.id, name=name.text)
         else:
             return await message.reply("**Wrong Input Start Your Process Again By Hitting /start**")
-        link = await client.ask(message.chat.id, "<b>Now Send Me Your Telegram Channel Link, Channel Link Will Show On Your Website.\n\nSend Like This <code>https://t.me/VJ_Bots</code> ✅\n\nDo not send like this @VJ_Bots ❌</b>")
+        link = await client.ask(message.chat.id, "<b>Now Send Me Your Telegram Channel Link, Channel Link Will Show On Your Website.\n\nSend Like This <code>https://t.me/cinemahub_07</code> ✅\n\nDo not send like this @cinemahub_07 ❌</b>")
         if link.text and link.text.startswith(('http://', 'https://')):
             await db.set_link(message.from_user.id, link=link.text)
         else:
@@ -41,7 +41,7 @@ async def start(client, message):
         await checkdb.add_user(message.from_user.id, message.from_user.first_name)
         return await message.reply("<b>Congratulations 🎉\n\nYour Account Created Successfully.\n\nFor Uploading File In Quality Option Use Command /quality\n\nMore Commands Are /account and /update and /withdraw\n\nFor Without Quality Option Direct Send File To Bot.</b>")
     else:
-        rm = InlineKeyboardMarkup([[InlineKeyboardButton("✨ Update Channel", url="https://t.me/pikashow_7")]])
+        rm = InlineKeyboardMarkup([[InlineKeyboardButton("✨ Update Channel", url="https://t.me/cinemahub_07")]])
         await client.send_message(
             chat_id=message.from_user.id,
             text=script.START_TXT.format(message.from_user.mention),
@@ -54,7 +54,7 @@ async def start(client, message):
 async def update(client, message):
     vj = True
     if vj:
-        name = await client.ask(message.chat.id, "<b>Now Send Me Your Business Name Which Show On Website\nEx :- <code>Tech VJ</code>\n\n/cancel - cancel the process</b>")
+        name = await client.ask(message.chat.id, "<b>Now Send Me Your Business Name Which Show On Website\nEx :- <code>kR disk</code>\n\n/cancel - cancel the process</b>")
         if name.text == "/cancel":
             return await message.reply("**Process Cancelled**")
         if name.text:
